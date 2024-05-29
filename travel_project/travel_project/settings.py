@@ -192,7 +192,7 @@ LOGGING = {
         },
         "file": {
             "class": "logging.FileHandler",
-            "filename": "/Users/vishwajeetthakur/Documents/project_learning_with_jeetu/travel_project/log/file.log",  # Specify the path to your log file
+            "filename": "log/file.log",  # Specify the path to your log file
             # "formatter": "verbose",
         },
     },
@@ -249,7 +249,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     
 ]
-
+ALLOWED_HOSTS = ['*']
 CORS_ALLOW_CREDENTIALS = True
 
 APPEND_SLASH=False

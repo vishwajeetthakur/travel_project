@@ -11,6 +11,7 @@ import AllTravelPlans from './pages/AllTravelPlans';
 import TravelPlansForUser from './pages/TravelPlansForUser';
 import UserBookings from './pages/UserBookings';
 import Register from './pages/Register';
+import HelloWorld from './pages/HelloWorld';
 import './index.css';
 
 const App = () => {
@@ -19,6 +20,7 @@ const App = () => {
       <AuthProvider>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/" element={<HelloWorld />} />
           <Route path="/register" element={<Register />} />
           <Route element={<PrivateRoute />}>
             <Route path="/admin" element={<Admin />} />

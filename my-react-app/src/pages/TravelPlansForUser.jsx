@@ -2,18 +2,17 @@ import React, { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Button
+  Grid,
+  Card,
+  CardContent,
+  CardMedia,
+  CardActions,
+  Button,
+  Box
 } from '@mui/material';
 import axiosInstance from '../utils/AxiosInstance';
 
-const AllTravelPlansForuser = () => {
+const AllTravelPlansForUser = () => {
   const [travelPlans, setTravelPlans] = useState([]);
 
   useEffect(() => {
@@ -44,34 +43,45 @@ const AllTravelPlansForuser = () => {
   return (
     <Container>
       <Typography variant="h4" gutterBottom>All Travel Plans</Typography>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Destination</TableCell>
-              <TableCell>Description</TableCell>
-              <TableCell>Cost</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {travelPlans.map((plan) => (
-              <TableRow key={plan.id}>
-                <TableCell>{plan.destination}</TableCell>
-                <TableCell>{plan.description}</TableCell>
-                <TableCell>{plan.cost}</TableCell>
-                <TableCell>
-                  <Button variant="contained" color="primary" onClick={() => handleBookClick(plan.id)}>
-                    Book Plan
-                  </Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+      <Grid container spacing={4}>
+        {travelPlans.map((plan) => (
+          <Grid item key={plan.id} xs={12} sm={6} md={4}>
+            <Card>
+              <CardMedia
+                component="img"
+                height="140"
+                width="300"
+                image={plan.imageUrl || 'default-image-url.jpg'}
+                alt={plan.destination}
+              />
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="div">
+                  {plan.destination}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {plan.description}
+                </Typography>
+                <Box mt={2}>
+                  <Typography variant="h6" color="text.primary">
+                    Cost: ${plan.cost}
+                  </Typography>
+                </Box>
+              </CardContent>
+              <CardActions>
+                <Button 
+                  variant="contained" 
+                  color="primary" 
+                  onClick={() => handleBookClick(plan.id)}
+                >
+                  Book Plan
+                </Button>
+              </CardActions>
+            </Card>
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 };
 
-export default AllTravelPlansForuser;
+export default AllTravelPlansForUser;
