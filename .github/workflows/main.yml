@@ -49,6 +49,7 @@ jobs:
 
     - name: Create log directory
       run: mkdir -p travel_project/log
+      run: touch -p travel_project/log/file.log
 
     - name: Run migrations
       run: |
