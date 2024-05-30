@@ -47,11 +47,11 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r travel_project/requirements.txt
 
+    # - name: Create log directory
     - name: Create log directory
-      - name: Create log directory
-        run: |
-          mkdir -p travel_project/log
-          touch travel_project/log/file.log
+      run: |
+        mkdir -p travel_project/log
+        touch travel_project/log/file.log
 
     - name: Run migrations
       run: |
