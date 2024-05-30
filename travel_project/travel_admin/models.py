@@ -1,14 +1,13 @@
 from django.db import models
-
-from django.db import models
-from django.db import models
 from django.contrib.auth.models import BaseUserManager,AbstractBaseUser
 
 
 class BlacklistedAccessToken(models.Model):
-    
     token = models.CharField(max_length=255, unique=True)
     blacklisted_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        app_label = 'travel_admin'  # Specify the app_label explicitly
    
 
 
