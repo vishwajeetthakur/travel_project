@@ -52,6 +52,8 @@ jobs:
       run: |
         mkdir -p travel_project/log
         touch travel_project/log/file.log
+        ls travel_project
+        pwd
 
     - name: Run migrations
       run: |

@@ -194,33 +194,42 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 import os
 
+#  Create log directory if it does not exist
+LOG_DIR = os.path.join(BASE_DIR, 'log')
+if not os.path.exists(LOG_DIR):
+    os.makedirs(LOG_DIR)
+
 LOGGING = {
-    "version": 1,
-    "disable_existing_loggers": False,
-    "handlers": {
-        "console": {
-            "class": "logging.StreamHandler",
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
         },
-        "file": {
-            "class": "logging.FileHandler",
-            "filename": "log/file.log",  # Specify the path to your log file
-            # "formatter": "verbose",
+        'file': {
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOG_DIR, 'file.log'),
+            'formatter': 'verbose',
         },
     },
-    "root": {
-        "handlers": ["console", "file"],
-        "level": "WARNING",
+    'root': {
+        'handlers': ['console', 'file'],
+        'level': 'WARNING',
     },
-    "loggers": {
-        "django": {
-            "handlers": ["console", "file"],
-            "level": os.getenv("DJANGO_LOG_LEVEL", "INFO"),
-            "propagate": False,
+    'loggers': {
+        'django': {
+            'handlers': ['console', 'file'],
+            'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+            'propagate': False,
+        },
+    },
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {message}',
+            'style': '{',
         },
     },
 }
-
-
 
 # DEBUG = bool(os.environ.get("DEBUG", default=0))
 
