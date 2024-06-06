@@ -27,11 +27,17 @@ jobs:
         ports:
           - 5432:5432
 
+    # env:
+    #   POSTGRES_DB: test_db
+    #   POSTGRES_USER: postgres
+    #   POSTGRES_PASSWORD: postgres
+    #   DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+
     env:
       POSTGRES_DB: test_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
-      DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_db
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/test_db
 
     steps:
     - name: Checkout code
