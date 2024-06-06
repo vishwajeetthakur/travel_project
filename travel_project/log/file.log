@@ -1,0 +1,61 @@
+INFO 2024-05-31 08:31:36,029 autoreload Watching for file changes with StatReloader
+INFO 2024-05-31 08:32:47,436 basehttp "OPTIONS /api/login/ HTTP/1.1" 200 0
+INFO 2024-05-31 08:32:47,606 basehttp "POST /api/login/ HTTP/1.1" 200 527
+INFO 2024-05-31 08:33:08,461 basehttp "OPTIONS /api/register/ HTTP/1.1" 200 0
+INFO 2024-05-31 08:33:08,635 basehttp "POST /api/register/ HTTP/1.1" 201 531
+WARNING 2024-05-31 08:33:19,567 log Not Found: /api/login/
+WARNING 2024-05-31 08:33:19,568 basehttp "POST /api/login/ HTTP/1.1" 404 68
+WARNING 2024-05-31 08:33:26,268 log Not Found: /api/login/
+WARNING 2024-05-31 08:33:26,269 basehttp "POST /api/login/ HTTP/1.1" 404 68
+WARNING 2024-05-31 08:33:33,317 log Not Found: /api/login/
+WARNING 2024-05-31 08:33:33,318 basehttp "POST /api/login/ HTTP/1.1" 404 68
+WARNING 2024-05-31 08:34:08,789 log Method Not Allowed: /api/login/
+WARNING 2024-05-31 08:34:08,791 basehttp "GET /api/login/ HTTP/1.1" 405 53
+WARNING 2024-05-31 08:34:08,948 log Not Found: /favicon.ico
+WARNING 2024-05-31 08:34:08,949 basehttp "GET /favicon.ico HTTP/1.1" 404 6086
+WARNING 2024-05-31 08:34:20,099 log Not Found: /swagger
+WARNING 2024-05-31 08:34:20,101 basehttp "GET /swagger HTTP/1.1" 404 6074
+INFO 2024-05-31 08:34:25,984 basehttp "GET /swagger/ HTTP/1.1" 200 2163
+INFO 2024-05-31 08:34:26,016 basehttp "GET /static/drf-yasg/style.css HTTP/1.1" 200 1047
+INFO 2024-05-31 08:34:26,019 basehttp "GET /static/drf-yasg/insQ.min.js HTTP/1.1" 200 2093
+INFO 2024-05-31 08:34:26,021 basehttp "GET /static/drf-yasg/swagger-ui-init.js HTTP/1.1" 200 14964
+INFO 2024-05-31 08:34:26,022 basehttp "GET /static/drf-yasg/immutable.min.js HTTP/1.1" 200 56904
+INFO 2024-05-31 08:34:26,026 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui.css HTTP/1.1" 200 145206
+INFO 2024-05-31 08:34:26,027 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-standalone-preset.js HTTP/1.1" 200 322863
+INFO 2024-05-31 08:34:26,031 basehttp "GET /static/drf-yasg/swagger-ui-dist/swagger-ui-bundle.js HTTP/1.1" 200 1046583
+INFO 2024-05-31 08:34:26,160 basehttp "GET /static/drf-yasg/swagger-ui-dist/favicon-32x32.png HTTP/1.1" 200 628
+INFO 2024-05-31 08:34:26,160 basehttp "GET /swagger/?format=openapi HTTP/1.1" 200 5331
+WARNING 2024-05-31 08:34:50,570 log Not Found: /api/login/
+WARNING 2024-05-31 08:34:50,571 basehttp "POST /api/login/ HTTP/1.1" 404 68
+INFO 2024-05-31 08:36:23,070 basehttp "POST /api/register/ HTTP/1.1" 201 531
+INFO 2024-05-31 08:36:28,771 basehttp "POST /api/login/ HTTP/1.1" 200 526
+INFO 2024-05-31 08:36:32,969 basehttp "OPTIONS /api/get_travel_plan/ HTTP/1.1" 200 0
+INFO 2024-05-31 08:36:32,993 basehttp "GET /api/get_travel_plan/ HTTP/1.1" 200 2
+INFO 2024-05-31 08:36:35,661 basehttp "OPTIONS /api/user/bookings/ HTTP/1.1" 200 0
+INFO 2024-05-31 08:36:35,686 basehttp "GET /api/user/bookings/ HTTP/1.1" 200 2
+INFO 2024-05-31 08:43:14,666 autoreload Watching for file changes with StatReloader
+INFO 2024-05-31 08:44:50,487 basehttp "POST /api/login/ HTTP/1.1" 200 527
+INFO 2024-06-06 16:38:39,148 autoreload Watching for file changes with StatReloader
+INFO 2024-06-06 16:39:06,166 basehttp "OPTIONS /api/users_details/bookings/ HTTP/1.1" 200 0
+WARNING 2024-06-06 16:39:06,190 log Unauthorized: /api/users_details/bookings/
+WARNING 2024-06-06 16:39:06,190 basehttp "GET /api/users_details/bookings/ HTTP/1.1" 401 183
+INFO 2024-06-06 16:39:06,196 basehttp "OPTIONS /api/token/refresh/ HTTP/1.1" 200 0
+WARNING 2024-06-06 16:39:06,207 log Unauthorized: /api/token/refresh/
+WARNING 2024-06-06 16:39:06,207 basehttp "POST /api/token/refresh/ HTTP/1.1" 401 65
+INFO 2024-06-06 16:39:54,023 basehttp "OPTIONS /api/login/ HTTP/1.1" 200 0
+INFO 2024-06-06 16:39:54,182 basehttp "POST /api/login/ HTTP/1.1" 200 527
+INFO 2024-06-06 16:39:57,789 basehttp "GET /api/users_details/bookings/ HTTP/1.1" 200 167
+INFO 2024-06-06 16:40:18,448 basehttp "OPTIONS /api/register/ HTTP/1.1" 200 0
+INFO 2024-06-06 16:40:18,614 basehttp "POST /api/register/ HTTP/1.1" 201 534
+INFO 2024-06-06 16:40:30,522 basehttp "POST /api/login/ HTTP/1.1" 200 529
+INFO 2024-06-06 16:40:33,148 basehttp "OPTIONS /api/get_travel_plan/ HTTP/1.1" 200 0
+INFO 2024-06-06 16:40:33,172 basehttp "GET /api/get_travel_plan/ HTTP/1.1" 200 2
+INFO 2024-06-06 16:40:35,886 basehttp "OPTIONS /api/user/bookings/ HTTP/1.1" 200 0
+INFO 2024-06-06 16:40:35,911 basehttp "GET /api/user/bookings/ HTTP/1.1" 200 2
+INFO 2024-06-06 16:40:38,189 basehttp "GET /api/get_travel_plan/ HTTP/1.1" 200 2
+INFO 2024-06-06 16:52:22,354 basehttp "POST /api/register/ HTTP/1.1" 201 534
+INFO 2024-06-06 16:52:33,957 basehttp "POST /api/login/ HTTP/1.1" 200 529
+INFO 2024-06-06 16:52:35,447 basehttp "GET /api/get_travel_plan/ HTTP/1.1" 200 2
+INFO 2024-06-06 16:52:37,622 basehttp "GET /api/user/bookings/ HTTP/1.1" 200 2
+INFO 2024-06-06 16:52:49,825 basehttp "POST /api/login/ HTTP/1.1" 200 527
+INFO 2024-06-06 16:52:52,870 basehttp "GET /api/get_travel_plan/ HTTP/1.1" 200 2

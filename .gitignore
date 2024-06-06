@@ -13,3 +13,7 @@ travel_project/Dockerfile
 travel_project/travel_admin/static/
 travel_project/travel_admin/templates/
 travel_project/db.sqlite3
+travel_project/travel_admin/__pycache__/
+travel_project/travel_admin/migrations/__pycache__/
+travel_project/travel_project/__pycache__/
+data/

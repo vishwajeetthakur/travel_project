@@ -135,14 +135,21 @@ WSGI_APPLICATION = 'travel_project.wsgi.application'
 #     }
 # }
 
+# Reading environment variables
+POSTGRES_DB = os.environ.get('POSTGRES_DB', 'travel_db')
+POSTGRES_USER = os.environ.get('POSTGRES_USER', 'travel_user')
+POSTGRES_PASSWORD = os.environ.get('POSTGRES_PASSWORD', 'travel_password')
+POSTGRES_HOST = os.environ.get('POSTGRES_HOST', 'postgres')
+POSTGRES_PORT = os.environ.get('POSTGRES_PORT', '5432')
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ.get('POSTGRES_DB'),
-        'USER': os.environ.get('POSTGRES_USER'),
-        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': POSTGRES_DB,
+        'USER': POSTGRES_USER,
+        'PASSWORD': POSTGRES_PASSWORD,
+        'HOST': POSTGRES_HOST,
+        'PORT': POSTGRES_PORT,
     }
 }
 

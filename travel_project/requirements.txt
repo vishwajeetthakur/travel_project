@@ -5,4 +5,5 @@ djangorestframework-simplejwt
 drf-yasg
 django-cors-headers
 pytest
-psycopg
+psycopg2-binary
+# psycopg2==2.9.9
