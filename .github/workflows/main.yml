@@ -135,8 +135,11 @@ jobs:
     - name: Copy build files
       run: docker cp $(docker-compose ps -q my-react-app):/app/dist ./dist
 
+    - name: List copied files
+      run: ls -la ./dist
+
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist 
+        personal_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+        publish_dir: ./dist
