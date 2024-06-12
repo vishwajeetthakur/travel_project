@@ -1,26 +1,30 @@
-# Use an official Node.js runtime as a parent image
+# Use an official node image as a parent image
 FROM node:18
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy the package.json and package-lock.json to the working directory
 COPY package*.json ./
 
-# Install app dependencies
+# Install dependencies
 RUN npm install
 
-# Copy the rest of your application code to the working directory
+# Update browserslist database
+RUN npx browserslist@latest --update-db
+
+# Copy the rest of the application code to the working directory
 COPY . .
 
-# Build the React app, for deployment
-RUN npm run build 
+# Build the Vite app for production
+RUN npm run build
 
-# Expose a port to communicate with the React app
+# Expose the port the app runs on
 EXPOSE 5173
 
-# Start your React app
+# Command to run the app
 CMD ["npm", "run", "dev"]
+
 
 
 # docker build -t my-react-app .
