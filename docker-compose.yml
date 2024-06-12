@@ -63,7 +63,7 @@ services:
     volumes:
       - ./my-react-app:/app
       - /app/node_modules
-    command: npm run dev
+    # command: npm run dev
     environment:
       - CHOKIDAR_USEPOLLING=true
 
