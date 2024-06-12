@@ -89,6 +89,9 @@ jobs:
     - name: Create log directory
       run: mkdir -p travel_project/log
 
+    - name: List all Files
+      run: ls
+
     - name: Build Docker images
       run: docker-compose build
 
