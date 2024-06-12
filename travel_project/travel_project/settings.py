@@ -153,6 +153,15 @@ DATABASES = {
     }
 }
 
+import sys
+
+if 'test' in sys.argv:
+    DATABASES['default'].update({
+        'NAME': 'test_travel_db',
+        'HOST': 'postgres_test',
+        # 'HOST': 'localhost',
+        'PORT': '5432',  # Change to '5433' if you want to directly access it outside Docker network
+    })
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators

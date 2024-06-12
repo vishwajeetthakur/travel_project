@@ -146,6 +146,7 @@ class APITests(APITestCase):
         url = reverse('User-Bookings-View')
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        # self.assertEqual(200,400)
 
 # Run the tests with the following command:
 # python manage.py test travel_admin
