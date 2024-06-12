@@ -1,0 +1,105 @@
+version: '3.8'
+
+# for postgres
+# # Step 1: Access the PostgreSQL container
+# docker exec -it travel_postgres bash
+
+# # Step 2: Log into the PostgreSQL database
+# psql -U travel_user -d travel_db
+
+# # If psql is not directly available, use:
+# # /usr/bin/psql -U travel_user -d travel_db
+
+# # Step 3: Use the psql prompt (example commands)
+# # List tables
+# \dt
+
+# # Exit psql
+# \q
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: travel_postgres
+    environment:
+      - POSTGRES_DB=travel_db
+      - POSTGRES_USER=travel_user
+      - POSTGRES_PASSWORD=travel_password
+      # - POSTGRES_HOST=localhost
+    ports:
+      - "5432:5432"
+    # volumes:
+    #   - postgres_data:/var/lib/postgresql/data
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data
+
+  backend:
+    build: ./travel_project
+    command: >
+      sh -c "./wait-for-it.sh postgres:5432 &&
+      python manage.py makemigrations &&
+      python manage.py migrate &&
+      python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./travel_project/:/usr/src/app/
+      # - ./wait-for-it.sh:/usr/src/app/wait-for-it.sh
+    ports:
+      - 8000:8000
+    depends_on:
+      - postgres
+    environment:
+      - POSTGRES_DB=travel_db
+      - POSTGRES_USER=travel_user
+      - POSTGRES_PASSWORD=travel_password
+      - POSTGRES_HOST=postgres
+      - POSTGRES_PORT=5432
+
+  my-react-app:
+    build:
+      context: ./my-react-app
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./my-react-app:/app
+      - /app/node_modules
+    command: npm run dev
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+
+
+  postgres_test:
+    image: postgres:latest
+    container_name: travel_postgres_test
+    environment:
+      - POSTGRES_DB=test_travel_db
+      - POSTGRES_USER=travel_user
+      - POSTGRES_PASSWORD=travel_password
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./data/postgres_test:/var/lib/postgresql/data
+
+  
+  test_backend:
+    build: ./travel_project
+    command: >
+        sh -c "python manage.py test travel_admin.tests"
+
+    volumes:
+      - ./travel_project/:/usr/src/app/
+    depends_on:
+      - postgres_test
+    environment:
+      - POSTGRES_DB=test_travel_db
+      - POSTGRES_USER=travel_user
+      - POSTGRES_PASSWORD=travel_password
+      - POSTGRES_HOST=postgres_test
+      - POSTGRES_PORT=5432
+
+
+# docker run --name my_postgres_container -e POSTGRES_DB=travel_db -e POSTGRES_USER=travel_user -e POSTGRES_PASSWORD=travel_password -p 5432:5432 -d postgres:latest
+
+
+# volumes:
+#   postgres_data:
