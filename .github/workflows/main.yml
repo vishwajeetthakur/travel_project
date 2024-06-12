@@ -137,9 +137,15 @@ jobs:
 
     - name: List copied files
       run: ls -la ./dist
+    
+    - name: List copied files
+      run: ls -la ./dist
 
+    - name: Print value of DEPLOY secret
+      run: echo "DEPLOY secret value: ${{ secrets.DEPLOY }}"
+      
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        personal_token: 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
+        personal_token: ${{ secrets.DEPLOY }}
         publish_dir: ./dist
