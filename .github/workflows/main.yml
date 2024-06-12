@@ -124,6 +124,9 @@ jobs:
 
     - name: List files in React app container
       run: docker-compose exec -T my-react-app ls /app
+    
+    - name: List files in React app container
+      run: docker-compose exec -T my-react-app ls
 
     - name: Copy build files
       run: docker cp $(docker-compose ps -q my-react-app):/app/dist ./dist
