@@ -141,8 +141,8 @@ jobs:
     - name: List copied files
       run: ls -la ./dist
 
-    - name: DUmmy
-      run: echo "Value: ${{ secrets.DEPLOY }}"
+    - name: Print value of DEPLOY secret
+      run: echo "DEPLOY secret value: ${{ secrets.DEPLOY }}"
       
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
