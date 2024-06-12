@@ -107,3 +107,25 @@ jobs:
 
     - name: Print message
       run: echo "Pipeline runs completely"
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and run Docker containers
+      run: docker-compose up --build -d
+
+    - name: Copy build files
+      run: |
+        docker cp $(docker-compose ps -q my-react-app):/app/build ./build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./build
+
