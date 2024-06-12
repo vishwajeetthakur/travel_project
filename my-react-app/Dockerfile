@@ -13,6 +13,9 @@ RUN npm install
 # Copy the rest of your application code to the working directory
 COPY . .
 
+# Build the React app, for deployment
+RUN npm run build 
+
 # Expose a port to communicate with the React app
 EXPOSE 5173
 
