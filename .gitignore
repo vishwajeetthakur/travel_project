@@ -6,10 +6,8 @@ django-env/
 test
 test.py
 output.json
-docker-compose.yml
 .env.dev
 my-react-app/node_modules
-travel_project/Dockerfile
 travel_project/travel_admin/static/
 travel_project/travel_admin/templates/
 travel_project/db.sqlite3
