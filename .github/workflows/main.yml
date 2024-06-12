@@ -70,82 +70,6 @@
 
 # ===============================================
 
-
-# name: CI Pipeline
-
-# on:
-#   push:
-#     branches:
-#       - main
-#   pull_request:
-#     branches:
-#       - main
-
-# jobs:
-#   test:
-#     runs-on: ubuntu-latest
-
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-
-#     - name: Create log directory
-#       run: mkdir -p travel_project/log
-
-#     - name: List all Files
-#       run: ls
-
-#     - name: Build Docker images
-#       run: docker-compose build
-
-#     - name: Start PostgreSQL test service
-#       run: docker-compose up -d postgres_test
-
-#     - name: Wait for PostgreSQL to be ready
-#       run: sleep 10
-
-#     - name: Check PostgreSQL logs
-#       run: docker-compose logs postgres_test
-
-#     - name: Build and run tests
-#       run: docker-compose run test_backend
-
-#     - name: Print message
-#       run: echo "Pipeline runs completely"
-
-#   deploy:
-#     runs-on: ubuntu-latest
-#     needs: test
-
-#     steps:
-#     - name: Checkout code
-#       uses: actions/checkout@v2
-
-#     - name: Build and run Docker containers
-#       run: docker-compose up --build -d
-
-#     - name: Wait for React build
-#       run: sleep 30
-
-#     - name: List files in React app container
-#       run: docker-compose exec -T my-react-app ls /app
-    
-#     - name: List files in React app container
-#       run: docker-compose exec -T my-react-app ls
-
-#     - name: Copy build files
-#       run: docker cp $(docker-compose ps -q my-react-app):/app/dist ./dist
-
-#     - name: Deploy to GitHub Pages
-#       uses: peaceiris/actions-gh-pages@v3
-#       with:
-#         github_token: ${{ secrets.GITHUB_TOKEN }}
-#         publish_dir: ./dist
-
-
-
-# ==================================
-
 name: CI Pipeline
 
 on:
@@ -157,42 +81,8 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up Node.js
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
-
-    - name: Install dependencies
-      run: npm install
-      working-directory: ./my-react-app
-
-    - name: Build React app
-      run: npm run build
-      working-directory: ./my-react-app
-
-    - name: List files in my-react-app
-      run: ls -la ./my-react-app
-
-    - name: List build files
-      run: ls -la ./my-react-app/dist
-
-    - name: Archive production artifacts
-      if: success()
-      uses: actions/upload-artifact@v2
-      with:
-        name: dist
-        path: ./my-react-app/dist
-
   test:
     runs-on: ubuntu-latest
-    needs: build
 
     steps:
     - name: Checkout code
@@ -224,17 +114,26 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
-    needs: build
+    needs: test
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Download production artifact
-      uses: actions/download-artifact@v2
-      with:
-        name: dist
-        path: ./dist
+    - name: Build Docker images
+      run: docker-compose build
+
+    - name: Start React app container
+      run: docker-compose up -d my-react-app
+
+    - name: Wait for React build
+      run: sleep 30
+
+    - name: List files in React app container
+      run: docker-compose exec -T my-react-app ls /app
+
+    - name: Copy build files
+      run: docker cp $(docker-compose ps -q my-react-app):/app/dist ./dist
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
