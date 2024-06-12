@@ -89,10 +89,14 @@ jobs:
     - name: Create log directory
       run: mkdir -p travel_project/log
 
-    - name: Set up Docker Compose
-      uses: docker/compose-cli@v1
-      with:
-        compose-file: docker-compose.yml
+    - name: Build Docker images
+      run: docker-compose build
+
+    - name: Set up PostgreSQL service
+      run: docker-compose up -d postgres
+
+    # - name: Run database migrations
+    #   run: docker-compose run backend sh -c "python manage.py makemigrations && python manage.py migrate"
 
     - name: Build and run tests
       run: docker-compose run test_backend
