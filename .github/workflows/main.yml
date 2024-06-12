@@ -66,8 +66,6 @@
 
 #     - name: Print message
 #       run: echo "Pipeline runs completely"
-
-
 name: CI Pipeline
 
 on:
@@ -95,11 +93,14 @@ jobs:
     - name: Build Docker images
       run: docker-compose build
 
-    - name: Set up PostgreSQL service
-      run: docker-compose up -d postgres
+    - name: Start PostgreSQL test service
+      run: docker-compose up -d postgres_test
 
-    # - name: Run database migrations
-    #   run: docker-compose run backend sh -c "python manage.py makemigrations && python manage.py migrate"
+    - name: Wait for PostgreSQL to be ready
+      run: sleep 10
+
+    - name: Check PostgreSQL logs
+      run: docker-compose logs postgres_test
 
     - name: Build and run tests
       run: docker-compose run test_backend
