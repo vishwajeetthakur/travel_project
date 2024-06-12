@@ -143,6 +143,9 @@
 #         publish_dir: ./dist
 
 
+
+# ==================================
+
 name: CI Pipeline
 
 on:
@@ -174,10 +177,14 @@ jobs:
       run: npm run build
       working-directory: ./my-react-app
 
+    - name: List files in my-react-app
+      run: ls -la ./my-react-app
+
     - name: List build files
-      run: ls ./my-react-app/dist
+      run: ls -la ./my-react-app/dist
 
     - name: Archive production artifacts
+      if: success()
       uses: actions/upload-artifact@v2
       with:
         name: dist
