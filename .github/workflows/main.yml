@@ -121,6 +121,9 @@ jobs:
 
     - name: Wait for React build
       run: sleep 30
+      
+    - name: List files in React app container
+      run: docker-compose exec my-react-app ls /app
 
     - name: Copy build files
       run: docker cp $(docker-compose ps -q my-react-app):/app/dist ./dist
