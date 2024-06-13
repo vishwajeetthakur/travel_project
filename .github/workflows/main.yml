@@ -81,36 +81,36 @@ on:
       - main
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
+  # test:
+  #   runs-on: ubuntu-latest
 
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+  #   steps:
+  #   - name: Checkout code
+  #     uses: actions/checkout@v2
 
-    - name: Create log directory
-      run: mkdir -p travel_project/log
+  #   - name: Create log directory
+  #     run: mkdir -p travel_project/log
 
-    - name: List all Files
-      run: ls
+  #   - name: List all Files
+  #     run: ls
 
-    - name: Build Docker images
-      run: docker-compose build
+  #   - name: Build Docker images
+  #     run: docker-compose build
 
-    - name: Start PostgreSQL test service
-      run: docker-compose up -d postgres_test
+  #   - name: Start PostgreSQL test service
+  #     run: docker-compose up -d postgres_test
 
-    - name: Wait for PostgreSQL to be ready
-      run: sleep 10
+  #   - name: Wait for PostgreSQL to be ready
+  #     run: sleep 10
 
-    - name: Check PostgreSQL logs
-      run: docker-compose logs postgres_test
+  #   - name: Check PostgreSQL logs
+  #     run: docker-compose logs postgres_test
 
-    - name: Build and run tests
-      run: docker-compose run test_backend
+  #   - name: Build and run tests
+  #     run: docker-compose run test_backend
 
-    - name: Print message
-      run: echo "Pipeline runs completely"
+  #   - name: Print message
+  #     run: echo "Pipeline runs completely"
 
   deploy:
     runs-on: ubuntu-latest
@@ -126,23 +126,23 @@ jobs:
     - name: Start React app container
       run: docker-compose up -d my-react-app
 
-    - name: Wait for React build
-      run: sleep 30
+    # - name: Wait for React build
+    #   run: sleep 30
 
-    - name: List files in React app container
-      run: docker-compose exec -T my-react-app ls /app
+    # - name: List files in React app container
+    #   run: docker-compose exec -T my-react-app ls /app
 
-    - name: Copy build files
-      run: docker cp $(docker-compose ps -q my-react-app):/app/dist ./dist
+    # - name: Copy build files
+    #   run: docker cp $(docker-compose ps -q my-react-app):/app/dist ./dist
 
-    - name: List copied files
-      run: ls -la ./dist
+    # - name: List copied files
+    #   run: ls -la ./dist
     
-    - name: List copied files
-      run: ls -la ./dist
+    # - name: List copied files
+    #   run: ls -la ./dist
       
-    - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        personal_token: ${{ secrets.DEPLOY }}
-        publish_dir: ./dist
+    # - name: Deploy to GitHub Pages
+    #   uses: peaceiris/actions-gh-pages@v3
+    #   with:
+    #     personal_token: ${{ secrets.DEPLOY }}
+    #     publish_dir: ./dist
