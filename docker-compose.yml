@@ -68,34 +68,34 @@ services:
       - CHOKIDAR_USEPOLLING=true
 
 
-  postgres_test:
-    image: postgres:latest
-    container_name: travel_postgres_test
-    environment:
-      - POSTGRES_DB=test_travel_db
-      - POSTGRES_USER=travel_user
-      - POSTGRES_PASSWORD=travel_password
-    ports:
-      - "5433:5432"
-    volumes:
-      - ./data/postgres_test:/var/lib/postgresql/data
+  # postgres_test:
+  #   image: postgres:latest
+  #   container_name: travel_postgres_test
+  #   environment:
+  #     - POSTGRES_DB=test_travel_db
+  #     - POSTGRES_USER=travel_user
+  #     - POSTGRES_PASSWORD=travel_password
+  #   ports:
+  #     - "5433:5432"
+  #   volumes:
+  #     - ./data/postgres_test:/var/lib/postgresql/data
 
   
-  test_backend:
-    build: ./travel_project
-    command: >
-        sh -c "python manage.py test travel_admin.tests"
+  # test_backend:
+  #   build: ./travel_project
+  #   command: >
+  #       sh -c "python manage.py test travel_admin.tests"
 
-    volumes:
-      - ./travel_project/:/usr/src/app/
-    depends_on:
-      - postgres_test
-    environment:
-      - POSTGRES_DB=test_travel_db
-      - POSTGRES_USER=travel_user
-      - POSTGRES_PASSWORD=travel_password
-      - POSTGRES_HOST=postgres_test
-      - POSTGRES_PORT=5432
+  #   volumes:
+  #     - ./travel_project/:/usr/src/app/
+  #   depends_on:
+  #     - postgres_test
+  #   environment:
+  #     - POSTGRES_DB=test_travel_db
+  #     - POSTGRES_USER=travel_user
+  #     - POSTGRES_PASSWORD=travel_password
+  #     - POSTGRES_HOST=postgres_test
+  #     - POSTGRES_PORT=5432
 
 
 # docker run --name my_postgres_container -e POSTGRES_DB=travel_db -e POSTGRES_USER=travel_user -e POSTGRES_PASSWORD=travel_password -p 5432:5432 -d postgres:latest
